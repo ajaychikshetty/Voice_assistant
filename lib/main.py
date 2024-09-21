@@ -7,13 +7,13 @@ import os
 
 app = FastAPI()
 
-# Initialize Google Gemini LLM with the API key directly
+# Initialize LLM with the API key 
 llm = ChatGoogleGenerativeAI(
     model='gemini-pro',
-    google_api_key="AIzaSyBA9PSeg5uzjDLaxY6wzqsnNt0nPQAMwMA"
+    google_api_key="" #pass your key here
 )
 
-# Create a prompt template for GK questions
+# Prompt template for GK questions
 my_prompt = PromptTemplate.from_template(
     """You are an AI specifically designed to answer general knowledge (GK) questions.
     Your purpose is to provide clear, accurate, and concise answers to any GK question.
@@ -21,7 +21,6 @@ my_prompt = PromptTemplate.from_template(
     Question: {topic}"""
 )
 
-# Create the LLMChain with the prompt and LLM
 chain = LLMChain(llm=llm, prompt=my_prompt, verbose=False)
 
 class Query(BaseModel):
